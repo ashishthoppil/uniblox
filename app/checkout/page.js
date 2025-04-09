@@ -1,10 +1,8 @@
 "use client"
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useCart } from "../context/CartContext";
-import { products } from "../constants/products";
 import { Inter } from "next/font/google";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -20,14 +18,37 @@ export default function Checkout() {
     email: ''
   });
 
+  const [coupon, setCoupon] = useState('')
+  const [code, setCode] = useState('')
+  const [appliedDiscount, setAppliedDiscount] = useState(0)
+  const [total, setTotal] = useState(0)
+
   const { cartItems, clearCart } = useCart();
   const router = useRouter();
 
-  useEffect(() => {
-    if (cartItems.length < 1) {
-        router.push('/');
+  const checkCouponEligibility = async (event) => {
+    event.preventDefault();
+    if (userDetails.email === '' || userDetails.name === '') {
+        toast.error('Enter your email address and name to check eligibility.')
+        return;
     }
-  }, [])
+    const response = await fetch('/api/check-coupon', {
+        method: 'POST',
+        body: JSON.stringify({
+            email: userDetails.email
+        })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        setCoupon(data.message);
+        return true;
+    } else {
+        setCoupon('no-offer');
+        return false;
+    }
+  }
 
   const getTotal = (products) => {
     let total = 0;
@@ -35,7 +56,49 @@ export default function Checkout() {
         total += (product.qty * product.price)
     });
 
-    return total
+    if (appliedDiscount !== 0) {
+        total = total - (total * (appliedDiscount / 100))
+    }
+
+    setTotal(total)
+  }
+
+  useEffect(() => {
+    if (cartItems.length < 1) {
+        router.push('/');
+    }
+    getTotal(cartItems);
+  }, [appliedDiscount])
+
+
+
+  const applyCode = async (event) => {
+    event.preventDefault();
+    if (userDetails.email === '' || userDetails.name === '') {
+        toast.error('Enter your email address and name to check eligibility.')
+        return;
+    }
+    if (code === '') {
+        toast.error('Enter discount code.')
+        return;
+    }
+    const response = await fetch('/api/apply-discount', {
+        method: 'POST',
+        body: JSON.stringify({
+            email: userDetails.email,
+            code
+        })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        toast.success(data.message);
+        setAppliedDiscount(data.data.percent);
+    } else {
+        toast.error(data.message);
+    }
+
   }
 
   const placeOrder = async (event) => {
@@ -43,10 +106,11 @@ export default function Checkout() {
     const response = await fetch('/api/place-order', {
         method: 'POST',
         body: JSON.stringify({
+            invoice: `UNI${Math.floor(10000 + Math.random() * 90000)}`,
             name: userDetails.name,
             email: userDetails.email,
             items: cartItems,
-            orderTotal: getTotal(cartItems)
+            orderTotal: total
         })
     });
 
@@ -58,6 +122,17 @@ export default function Checkout() {
             clearCart();
             router.push('/');  
         }, 3000);
+    }
+  }
+
+  const getCouponMessage = (coupon) => {
+    switch (coupon) {
+        case 'no-offer':
+            return 'You are not eligible for a discount at the moment.'
+        case '':
+            return ''
+        default:
+            return `Congratulations! You are eligible for a discount of ${coupon && coupon.percent}%, use ${coupon && coupon.code} as the code.`
     }
   }
 
@@ -78,7 +153,7 @@ export default function Checkout() {
                 </div>
                 <div className="flex justify-between">
                     <h1 className="font-bold text-[26px]">Total</h1>
-                    <h1 className="font-bold text-[26px]">{`$${getTotal(cartItems)}`}</h1>
+                    <h1 className="font-bold text-[26px]">{`$${total}`}</h1>
                 </div>
             </div>
         </div>
@@ -103,10 +178,19 @@ export default function Checkout() {
                         }
                     })}  value={userDetails.email} className="outline-none p-2 border-2 border-gray-200 rounded-md" type="email" />
                 </div>
+                <div className="flex items-center justify-end gap-5">
+                    <label className="font-bold">Coupon Code</label>
+                    <input onChange={(e) => setCode(e.target.value)}  value={code} className="outline-none p-2 border-2 border-gray-200 rounded-md" type="text" />
+                    <button onClick={applyCode} className="text-teal-600 cursor-pointer text-[14px]">Apply</button>
+                </div>
+                <div className="flex flex-col items-end justify-center">
+                    <button onClick={checkCouponEligibility} className="text-teal-600 cursor-pointer text-[14px]">Check coupon eligibility</button>
+                    {getCouponMessage(coupon)}
+                </div>
                 <div className="flex items-center justify-center bg-teal-100 border-2 border-dashed border-teal-600 py-5 rounded-lg">
                     <span className="text-[16px] text-teal-600 font-bold">-- Card Details Here --</span>
                 </div>
-                <button type="submit" onClick={(e) => placeOrder(e)} className="flex justify-center items-center bg-teal-500 p-2 font-bold text-sm rounded-md text-white cursor-pointer hover:bg-teal-600 duration-500">Pay {`$${getTotal(cartItems)}`} & Place Order</button>
+                <button type="submit" onClick={(e) => placeOrder(e)} className="flex justify-center items-center bg-teal-500 p-2 font-bold text-sm rounded-md text-white cursor-pointer hover:bg-teal-600 duration-500">Pay {`$${total}`} & Place Order</button>
             </form>
         </div>
     </main>
