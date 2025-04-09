@@ -13,7 +13,7 @@ Then, run the development server
 npm run dev
 ```
 
-This is a eCommerce project called Uniblox Market
+This is an eCommerce project called Uniblox Market
 
 The following are the main features:
 

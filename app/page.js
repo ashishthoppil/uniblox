@@ -26,8 +26,8 @@ export default function Home() {
     <main className={`w-full py-5 px-10 ${inter.className}`}>
       <section className="flex justify-center items-center h-[85vh] rounded-[30px] border-2 border-gray-200 shadow-md shadow-teal-900/50">
         <section className="flex flex-col gap-20">
-          <div className="flex flex-col gap-2">
-            <h1 className="font-bold text-center text-[62px]">
+          <div className="flex flex-col gap-2 px-2 md:px-0">
+            <h1 className="font-bold text-center text-[28px] md:text-[62px]">
               One stop solution for all your <br/><span className="bg-teal-500 rounded-md text-white px-2">Household Needs</span>
             </h1>
             <span className="text-center text-zinc-400">
@@ -42,7 +42,7 @@ export default function Home() {
         </section>
       </section>
       <section ref={productsRef} className="flex flex-col py-40">
-        <h1 className="font-bold text-center text-[52px]">Check out our <span className="bg-teal-500 rounded-md text-white px-2">Bestsellers</span></h1>
+        <h1 className="font-bold text-center text-[28px] md:text-[52px]">Check out our <span className="bg-teal-500 rounded-md text-white px-2">Bestsellers</span></h1>
         <div className="mt-10">
           <Products products={products} />
         </div>

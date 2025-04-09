@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <CartProvider>
       <html lang="en">
-        <body>
+        <body className="w-full">
           <Header />
           <main className={`flex bg-white flex-col items-center justify-between flex-grow !focus:ring-0 ${inter.className}`}>
             <div className="w-full">

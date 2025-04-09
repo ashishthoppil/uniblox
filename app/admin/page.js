@@ -67,8 +67,8 @@ export default function Cart() {
     return (
         <main className={`w-full ${inter.className}`}>
             <section className="flex w-full">
-                <aside className="flex flex-col items-start gap-5 h-screen w-[15%] border-2 border-gray-200 border-t-0 py-10">
-                    <Link className="flex items-end justify-center gap-2 w-full" href={'/'}>
+                <aside className="flex flex-col items-start gap-5 h-screen w-[50%] md:w-[15%] border-2 border-gray-200 border-t-0 py-10">
+                    <Link className="hidden md:flex items-end justify-center gap-2 w-full" href={'/'}>
                         <Image
                             src="/logo.svg"
                             alt="Uniblox logo"
@@ -87,9 +87,9 @@ export default function Cart() {
                         </div>
                     </div> 
                 </aside>
-                <section className="py-5 px-10 w-[85%] bg-gray-50">
+                <section className="py-5 pr-10 pl-2 md:px-10 w-[85%] bg-gray-50">
                     {activeSection === 'coupon' ? <>
-                        <h1 className="text-[52px] font-bold">Coupon Settings</h1>
+                        <h1 className="text-[22px] md:text-[52px] font-bold">Coupon Settings</h1>
                         <form className="flex flex-col gap-5 mt-10">
                             <div className="flex flex-col gap-5">
                                 <label>How many orders are required to receive a coupon code?</label>
@@ -137,26 +137,26 @@ export default function Cart() {
                         </form>
                     </> : <></>}
                     {activeSection === 'orders' ? <>
-                        <h1 className="text-[52px] font-bold">Console</h1>
-                        <div className="flex gap-5 w-full mt-10">
-                            <div className="flex flex-col gap-10 bg-white py-5 px-3 shadow-lg rounded-lg w-[20%]">
-                                <h1 className="text-[26px] font-bold text-teal-600">Total Sales</h1>
+                        <h1 className="text-[22px] md:text-[52px] font-bold">Console</h1>
+                        <div className="flex flex-col md:flex-row gap-5 w-full mt-10">
+                            <div className="flex flex-col gap-10 bg-white py-5 px-3 shadow-lg rounded-lg w-full md:w-[20%]">
+                                <h1 className="text-[18px] md:text-[26px] font-bold text-teal-600">Total Sales</h1>
                                 <div className="flex justify-end">
-                                    <h1 className="text-[36px] font-bold">{data && data.totalSales}</h1>
+                                    <h1 className="text-[18px] md:text-[36px] font-bold">{data && data.totalSales}</h1>
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-10 bg-white py-5 px-3 shadow-lg rounded-lg w-[20%]">
-                                <h1 className="text-[26px] font-bold text-teal-600">Active Users</h1>
+                            <div className="flex flex-col gap-10 bg-white py-5 px-3 shadow-lg rounded-lg w-full md:w-[20%]">
+                                <h1 className="text-[18px] md:text-[26px] font-bold text-teal-600">Active Users</h1>
                                 <div className="flex justify-end">
-                                    <h1 className="text-[36px] font-bold">{data && data.uniqueUsers}</h1>
+                                    <h1 className="text-[18px] md:text-[36px] font-bold">{data && data.uniqueUsers}</h1>
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-10 bg-white py-5 px-3 shadow-lg rounded-lg w-[20%]">
-                                <h1 className="text-[26px] font-bold text-teal-600">No. of Orders</h1>
+                            <div className="flex flex-col gap-10 bg-white py-5 px-3 shadow-lg rounded-lg w-full md:w-[20%]">
+                                <h1 className="text-[18px] md:text-[26px] font-bold text-teal-600">No. of Orders</h1>
                                 <div className="flex justify-end">
-                                    <h1 className="text-[36px] font-bold">{data && data.totalOrders}</h1>
+                                    <h1 className="text-[18px] md:text-[36px] font-bold">{data && data.totalOrders}</h1>
                                 </div>
                             </div>
 

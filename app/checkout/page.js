@@ -137,8 +137,8 @@ export default function Checkout() {
   }
 
   return (
-    <main className={`flex gap-10 w-full py-5 px-10 ${inter.className}`}>
-        <div className="flex flex-col justify-between border-2 border-gray-100 shadow-md rounded-md w-[30%] h-[50vh] overflow-y-auto p-5">
+    <main className={`flex flex-col-reverse md:flex-row gap-10 w-full py-5 px-10 ${inter.className}`}>
+        <div className="flex flex-col justify-between border-2 border-gray-100 shadow-md rounded-md w-full md:w-[30%] h-[50vh] overflow-y-auto p-5">
             <div className="flex flex-col gap-10">
                 <h1 className="font-bold text-[24px] text-teal-600">Order Summary</h1>
                 <div className="flex flex-col gap-3">
@@ -157,7 +157,7 @@ export default function Checkout() {
                 </div>
             </div>
         </div>
-        <div className="flex flex-col gap-5 border-2 border-gray-100 shadow-md rounded-md w-[70%] p-5">
+        <div className="flex flex-col gap-5 border-2 border-gray-100 shadow-md rounded-md w-full md:w-[70%] p-5">
             <h1>Enter payment details</h1>
             <form className="flex flex-col gap-5">
                 <div className="flex flex-col">
@@ -178,8 +178,8 @@ export default function Checkout() {
                         }
                     })}  value={userDetails.email} className="outline-none p-2 border-2 border-gray-200 rounded-md" type="email" />
                 </div>
-                <div className="flex items-center justify-end gap-5">
-                    <label className="font-bold">Coupon Code</label>
+                <div className="flex flex-col md:flex-row items-center justify-end gap-5">
+                    <label className="font-bold text-left">Coupon Code</label>
                     <input onChange={(e) => setCode(e.target.value)}  value={code} className="outline-none p-2 border-2 border-gray-200 rounded-md" type="text" />
                     <button onClick={applyCode} className="text-teal-600 cursor-pointer text-[14px]">Apply</button>
                 </div>

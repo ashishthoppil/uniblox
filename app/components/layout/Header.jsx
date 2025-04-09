@@ -10,7 +10,7 @@ export const Header = () => {
     const { cartItems } = useCart();
     
     return (
-        <div className="sticky top-0 bg-transparent backdrop-blur-md flex justify-between py-5 px-10 w-full z-[1]">
+        <div className="sticky top-0 bg-transparent backdrop-blur-md flex  justify-between py-5 px-10 w-full z-[1]">
                 <Link className="flex items-end justify-center gap-2" href={'/'}>
                     <Image
                         src="/logo.svg"
@@ -19,9 +19,9 @@ export const Header = () => {
                         height={25}
                         priority
                     />
-                    <span className="font-bold text-[18px] text-zinc-800">Uniblox Market</span>
+                    <span className="font-bold text-[18px] text-zinc-800 hidden md:flex">Uniblox Market</span>
                 </Link>
-            <div className="flex items-center gap-10">
+            <div className="flex flex-row-reverse md:flex-row items-center gap-10">
                 <div title="Shopping Cart" className="flex items-start">
                     <Link className="flex gap-1" href={'/cart'}><ShoppingBasket className="text-teal-600" /></Link>
                     {cartItems.length > 0 ? <span className="bg-red-500 rounded-full py-[1px] px-[6px] text-white font-thin text-xs">{cartItems.length}</span> : <></>}

@@ -13,7 +13,7 @@ export const Products = ({ products }) => {
 
     return (
         <div className="flex flex-col items-center justify-center gap-20">
-            <div className="flex items-center justify-center gap-10">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-10">
                 {products.map((product) => 
                 <div onClick={() => router.push(`/products/${product.id}`)} className="flex flex-col gap-1 rounded-md shadow-md cursor-pointer hover:scale-102 duration-100" key={product.id}>
                     <img
