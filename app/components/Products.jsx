@@ -1,41 +1,17 @@
+"use client";
+
 import { Blocks, ShoppingBagIcon } from "lucide-react"
 import Image from "next/image"
+import { useCart } from "../context/CartContext";
 
-export const Bestsellers = ({ products }) => {
-    const p = [
-        {
-            id: 1,
-            name: 'Ceramic Vase',
-            price: '$25',
-            image: '/product1.webp',
-            shortDescription: 'Lorem ipsum dolor sit.'
-        },
-        {
-            id: 2,
-            name: 'Wings on Fire',
-            price: '$49',
-            image: '/product2.webp',
-            shortDescription: 'Lorem ipsum dolor sit.'
-        },
-        {
-            id: 3,
-            name: 'Ceramic Vase',
-            price: '$125',
-            image: '/product3.webp',
-            shortDescription: 'Lorem ipsum dolor sit.'
-        },
-        {
-            id: 4,
-            name: 'Glass Vase',
-            price: '$15',
-            image: '/product4.webp',
-            shortDescription: 'Lorem ipsum dolor sit.'
-        }
-    ]
+export const Products = ({ products }) => {
+
+    const { addToCart, cartItems } = useCart();
+
     return (
         <div className="flex flex-col items-center justify-center gap-20">
             <div className="flex items-center justify-center gap-10">
-                {p.map((product) => 
+                {products.map((product) => 
                 <div className="flex flex-col gap-1 rounded-md shadow-md cursor-pointer  hover:scale-102 duration-100" key={product.id}>
                     <img
                         className="rounded-t-md w-full"
@@ -51,7 +27,7 @@ export const Bestsellers = ({ products }) => {
                     <div className="flex items-center justify-between px-3 pb-3">
                         <span className="text-[22px] font-bold text-teal-600">{product.price}</span>
                         <div className="flex gap-2">
-                            <button className="flex items-center font-bold text-[14px] text-white p-2 pr-3 rounded-md bg-teal-500 hover:bg-teal-600 cursor-pointer duration-500">
+                            <button onClick={() => addToCart(product)} className="flex items-center font-bold text-[14px] text-white p-2 pr-3 rounded-md bg-teal-500 hover:bg-teal-600 cursor-pointer duration-500">
                                 <ShoppingBagIcon className="text-white h-4 " /> Add To Cart
                             </button>
                         </div>
