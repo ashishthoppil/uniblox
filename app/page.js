@@ -6,6 +6,7 @@ import { Products } from "./components/Products";
 import { useRef } from "react";
 import Link from "next/link";
 import { useCart } from "./context/CartContext";
+import { products } from "./constants/products";
 
 
 export const inter = Inter({
@@ -14,37 +15,6 @@ export const inter = Inter({
 })
 
 export default function Home() {
-
-  const products = [
-      {
-          id: 1,
-          name: 'Ceramic Vase',
-          price: '$25',
-          image: '/product1.webp',
-          shortDescription: 'Lorem ipsum dolor sit.'
-      },
-      {
-          id: 2,
-          name: 'Wings on Fire',
-          price: '$49',
-          image: '/product2.webp',
-          shortDescription: 'Lorem ipsum dolor sit.'
-      },
-      {
-          id: 3,
-          name: 'Ceramic Vase',
-          price: '$125',
-          image: '/product3.webp',
-          shortDescription: 'Lorem ipsum dolor sit.'
-      },
-      {
-          id: 4,
-          name: 'Glass Vase',
-          price: '$15',
-          image: '/product4.webp',
-          shortDescription: 'Lorem ipsum dolor sit.'
-      }
-  ]
 
   const productsRef = useRef();
 

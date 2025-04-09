@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
             <div className="w-full">
               {children}
             </div>
-            <footer className="flex gap-2 justify-center text-zinc-500 w-full py-10">
+            <footer className="bottom-0 flex gap-2 justify-center text-zinc-500 w-full py-10">
               Copyright <Copyright /> Uniblox
             </footer>
             <ToastContainer />

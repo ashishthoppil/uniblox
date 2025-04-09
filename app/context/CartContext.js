@@ -9,7 +9,25 @@ export function CartProvider({ children }) {
 
   // Add item to cart
   const addToCart = (product) => {
-    setCartItems((prevItems) => [...prevItems, product]);
+    const exists = cartItems.filter(item => item.id == product.id);
+    if (exists.length > 0) {
+        const modifiedItem = [];
+        
+        cartItems.forEach(item => {
+            if (item.id === product.id) {
+                modifiedItem.push({
+                    ...item,
+                    qty: item.qty + 1
+                })
+            } else {
+                modifiedItem.push(item);
+            }
+        });
+        setCartItems(modifiedItem);
+    } else {
+
+        setCartItems((prevItems) => [...prevItems, product]);
+    }
   };
 
   // Remove item from cart
