@@ -28,7 +28,7 @@ export default function Cart() {
     return (
         <main className={`w-full py-5 px-10 ${inter.className}`}>
         <section className="flex flex-col gap-20 w-full">
-            <h1 className="font-bold text-[42px]">Item(s) in Cart</h1>
+            <h1 className="font-bold text-[32px]">Item(s) in Cart</h1>
                 {cartItems.length > 0 ? 
                 <section className="flex gap-10 w-full">
                     <div className="flex flex-col gap-5 w-[70%]">

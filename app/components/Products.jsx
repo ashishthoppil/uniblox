@@ -30,7 +30,10 @@ export const Products = ({ products }) => {
                     <div className="flex items-center justify-between px-3 pb-3">
                         <span className="text-[22px] font-bold text-teal-600">${product.price}</span>
                         <div className="flex gap-2">
-                            <button onClick={() => addToCart(product)} className="flex items-center font-bold text-[14px] text-white p-2 pr-3 rounded-md bg-teal-500 hover:bg-teal-600 cursor-pointer duration-500">
+                            <button onClick={(e) => {
+                                e.stopPropagation();
+                                addToCart(product);
+                            }} className="flex items-center font-bold text-[14px] text-white p-2 pr-3 rounded-md bg-teal-500 hover:bg-teal-600 cursor-pointer duration-500">
                                 <ShoppingBagIcon className="text-white h-4 " /> Add To Cart
                             </button>
                         </div>

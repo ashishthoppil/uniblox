@@ -10,7 +10,7 @@ export const Header = () => {
     const { cartItems } = useCart();
     
     return (
-        <div className="sticky top-0 bg-transparent backdrop-blur-md flex justify-between py-5 px-10 w-full">
+        <div className="sticky top-0 bg-transparent backdrop-blur-md flex justify-between py-5 px-10 w-full z-[1]">
                 <Link className="flex items-end justify-center gap-2" href={'/'}>
                     <Image
                         src="/logo.svg"
@@ -26,9 +26,9 @@ export const Header = () => {
                     <Link className="flex gap-1" href={'/cart'}><ShoppingBasket className="text-teal-600" /></Link>
                     {cartItems.length > 0 ? <span className="bg-red-500 rounded-full py-[1px] px-[6px] text-white font-thin text-xs">{cartItems.length}</span> : <></>}
                 </div>
-                <button className="flex gap-1 items-center py-1 pl-1 pr-3 bg-teal-500 hover:bg-teal-600 text-white text-[14px] font-semibold rounded-md cursor-pointer">
-                    <LogInIcon className="h-4" /> Login
-                </button>
+                <Link href={'/admin'} className="flex gap-1 items-center py-1 pl-1 pr-3 bg-teal-500 hover:bg-teal-600 text-white text-[14px] font-semibold rounded-md cursor-pointer">
+                    <LogInIcon className="h-4" /> Admin Dashboard
+                </Link>
             </div>
         </div>
     )
