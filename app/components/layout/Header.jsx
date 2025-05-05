@@ -19,7 +19,7 @@ export const Header = () => {
                         height={25}
                         priority
                     />
-                    <span className="font-bold text-[18px] text-zinc-800 hidden md:flex">Uniblox Market</span>
+                    <span className="font-bold text-[18px] text-zinc-800 hidden md:flex">UniBlox Marketers</span>
                 </Link>
             <div className="flex flex-row-reverse md:flex-row items-center gap-10">
                 <div title="Shopping Cart" className="flex items-start">

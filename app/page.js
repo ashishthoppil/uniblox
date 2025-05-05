@@ -28,7 +28,7 @@ export default function Home() {
         <section className="flex flex-col gap-20">
           <div className="flex flex-col gap-2 px-2 md:px-0">
             <h1 className="font-bold text-center text-[28px] md:text-[62px]">
-              One stop solution for all your <br/><span className="bg-teal-500 rounded-md text-white px-2">Household Needs</span>
+              One stop solution for all your <br/><span className="bg-teal-500 rounded-md text-white px-2">Marketing Needs</span>
             </h1>
             <span className="text-center text-zinc-400">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />Suspendisse odio nibh, auctor a eleifend eu, ullamcorper eget risus.
@@ -36,7 +36,7 @@ export default function Home() {
           </div>
           <div className="flex justify-center gap-2">
             <button onClick={gotoBestsellers} className="flex items-center justify-center py-3 pl-3 pr-5 bg-teal-500 hover:bg-teal-600 text-white text-[14px] font-bold rounded-md cursor-pointer duration-500">
-              <Blocks className="h-4" />View Collection 
+              <Blocks className="h-4" />View Services 
             </button>
           </div>
         </section>
