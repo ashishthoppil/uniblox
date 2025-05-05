@@ -20,6 +20,9 @@ export default function RootLayout({ children }) {
   return (
     <CartProvider>
       <html lang="en">
+        <head>
+          <script src='https://kulfi-ai.com/js/loader.js?o=We%20Are%20Social&al=r&cw=400&c=9F580A'></script>
+        </head>
         <body className="w-full">
           <Header />
           <main className={`flex bg-white flex-col items-center justify-between flex-grow !focus:ring-0 ${inter.className}`}>
